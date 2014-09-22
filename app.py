@@ -7,7 +7,7 @@ import tkFileDialog
 
 import os
 
-
+VERSION = '0.0.1'
 
 class Controller(Frame):
     '''
@@ -36,8 +36,13 @@ class Controller(Frame):
 
 
     def creatMenu(self):
+        '''
+
+        '''
         # menubar
         menubar = Menu(self.master)
+        # self.master.createcommand("::tk::mac::ShowHelp", self.about_action)
+        # remove the 'python' submenu by py2app
 
         # menu
         menu = Menu(menubar, tearoff=0)
@@ -51,22 +56,30 @@ class Controller(Frame):
         except AttributeError:
             self.master.tk.call(master, "config", "-menu", menubar)
 
+    def about_action(self):
+        pass
+
     def creatButtons(self):
-        img_day = PhotoImage(file="res/a2.gif") # reference PhotoImage in local variable
+        img_day   = PhotoImage(file="res/a2.gif") # reference PhotoImage in local variable
         img_topic = PhotoImage(file="res/a1.gif")
 
         button_day = Button(self, justify=LEFT)
-        button_day.config(text="每日推荐", image=img_day, width="40", height="20", compound="left")
-        button_day.pack(side=LEFT)
+        button_day.config(text="每日推荐", image=img_day) # width="40", height="20", compound="left"
+        # button_day.pack()
+        # button_day.grid(row=0, column=0, sticky=W)
+        button_day.grid(columnspan=1, sticky=W)
 
         button_topic = Button(self, justify=LEFT)
-        button_topic.config(text="主题日报", image=img_topic, width="40", height="20", compound="left")
-        button_topic.pack(side=LEFT)
+        button_topic.config(text="主题日报", image=img_topic) # , width="40", height="20", compound="left"
+        # button_topic.pack()
+        # button_topic.grid(row=1, column=0, sticky=W)
+        button_topic.grid(columnspan=1, sticky=W)
 
 
     def creatList(self):
         listbox = Listbox(self, selectmode=SINGLE)
-        listbox.pack(fill=BOTH, expand=1)
+        listbox.grid(columnspan=1, sticky=W)
+        # listbox.pack(fill=BOTH, expand=1)
 
         # for item in ["每日推荐", "主题日报"]:
         #     listbox.insert(END, item)
