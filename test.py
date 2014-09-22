@@ -1,6 +1,11 @@
 import os
 import Tkinter
 
+import sys
+reload(sys)
+sys.setdefaultencoding('UTF-8')
+
+
 root = Tkinter.Tk()
 L = Tkinter.Listbox(selectmode=Tkinter.SINGLE)
 gifsdict = {}

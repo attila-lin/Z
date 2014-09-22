@@ -5,4 +5,9 @@ import sys
 reload(sys)
 sys.setdefaultencoding('UTF-8')
 
-http://news-at.zhihu.com/api/3/news/latest
+
+from topic import *
+
+topic = Topic()
+for x in topic.topics:
+  print x[0] + " " + str(x[1])

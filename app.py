@@ -6,6 +6,9 @@ import tkMessageBox
 import tkFileDialog
 
 import os
+import sys
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 VERSION = '0.0.1'
 
@@ -60,29 +63,41 @@ class Controller(Frame):
         pass
 
     def creatButtons(self):
-        img_day   = PhotoImage(file="res/a2.gif") # reference PhotoImage in local variable
-        img_topic = PhotoImage(file="res/a1.gif")
+        img_day   = PhotoImage(file="res/icon_1.gif") # reference PhotoImage in local variable
+        img_topic = PhotoImage(file="res/icon_2.gif")
+        # img_topic = img_topic.zoom(x=0.5,y=10)
+        # print ""
+        # print img_topic.width()
 
-        button_day = Button(self, justify=LEFT)
-        button_day.config(text="每日推荐", image=img_day) # width="40", height="20", compound="left"
-        # button_day.pack()
-        # button_day.grid(row=0, column=0, sticky=W)
-        button_day.grid(columnspan=1, sticky=W)
+        button_daily = Button(self, justify=LEFT, command=self.daily_cb)
+        button_daily.config(compound=LEFT, text="每日推荐", image=img_day) # width="40", height="20", compound="left"
+        button_daily.image = img_day # keep a reference!
+        # button_daily.pack()
+        # button_daily.grid(row=0, column=0, sticky=W)
+        button_daily.grid(columnspan=1, sticky=W)
 
-        button_topic = Button(self, justify=LEFT)
-        button_topic.config(text="主题日报", image=img_topic) # , width="40", height="20", compound="left"
+        button_topic = Button(self, justify=LEFT, command=self.topic_cb)
+        button_topic.config(compound=LEFT, text="  主题日报", image=img_topic) # , width="40", height="20", compound="left"
+        button_topic.image = img_topic # keep a reference!
         # button_topic.pack()
         # button_topic.grid(row=1, column=0, sticky=W)
         button_topic.grid(columnspan=1, sticky=W)
 
+    def daily_cb(self):
+        pass
+
+    def topic_cb(self):
+        pass
 
     def creatList(self):
         listbox = Listbox(self, selectmode=SINGLE)
         listbox.grid(columnspan=1, sticky=W)
         # listbox.pack(fill=BOTH, expand=1)
 
-        # for item in ["每日推荐", "主题日报"]:
-        #     listbox.insert(END, item)
+        for item in ["每日推荐", "主题日报"]:
+            listbox.insert(END, item)
+
+        listbox.config(borderwidth=0,height=50)
 
 
     def showAbout(self):
